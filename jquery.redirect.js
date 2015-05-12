@@ -55,8 +55,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		}
 
 		return {url: url, params: obj};		
-	}  	
-		var getInput = function(name, value, parent) {
+	};  	
+	var getInput = function(name, value, parent) {
 		var parentString;
 		if( parent.length > 0 ) {
 			parentString = parent[0];
