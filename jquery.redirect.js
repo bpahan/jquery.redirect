@@ -18,12 +18,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  */
 	$.redirect = function( target, values, method ) {  
 		method = (method && method.toUpperCase() == 'GET') ? 'GET' : 'POST';
-			
-		if (!values)
+
+		if (method === 'GET')
 		{
 			var obj = $.parse_url(target);
 			target = obj.url;
-			values = obj.params;
+			values = $.extend(obj.params, values);
 		}
 					
 		var form = $('<form>').attr({
@@ -44,7 +44,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			
 		var parts = url.split('?'),
 			url = parts[0],
-			query_string = parts[1],
+			query_string = decodeURIComponent(parts[1].replace(/\+/g, " ")),
 			elems = query_string.split('&'),
 			obj = {};
 		
